@@ -56,4 +56,9 @@ export default {
   .face-cursor {
     cursor: url('~@/assets/cursor.png') 64 64, crosshair; /* Place hotspot in the middle of 128x128 image */
   }
+
+  .thin {
+      font-weight: 200;
+  }
+
 </style>
