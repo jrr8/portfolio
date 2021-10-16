@@ -15,23 +15,33 @@ export default {
       author: ""
     }
   },
-  beforeCreate: function() {
+  created () {
     const vm = this;
     let req = new XMLHttpRequest();
-    req.open('GET', "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1", true);
+
+    req.open('GET',
+        `https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand&per_page=1&page=${this.getRandomPage()}`,
+        true);
 
     req.onload = function() {
       const resp = JSON.parse(req.responseText);
       if (resp) {
         const data = resp[0];
         const tempDiv = document.createElement('DIV');
-        tempDiv.innerHTML = data.content;
+        tempDiv.innerHTML = data.content.rendered;
         vm.message = tempDiv.innerText;
-        vm.author = data.title;
+        vm.author = data.title.rendered;
       }
     };
 
     req.send()
+  },
+
+  methods: {
+    getRandomPage () {
+      const numArticles = 1000  // It's approximate, but we know it's at least 1000 (as of 10/16/21)
+      return Math.floor(Math.random() * numArticles)
+    },
   },
 }
 </script>
