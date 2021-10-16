@@ -7,10 +7,10 @@ module.exports = {
     s3Deploy: {
       registry: undefined,
       awsProfile: 'default',
-      region: 'us-east-1',
+      region: 'us-east-2',
       bucket: 'broccoli-rob.me',
       createBucket: false,
-      staticHosting: false,
+      staticHosting: true,
       assetPath: 'dist',
       assetMatch: '**',
       deployPath: '/',
@@ -18,7 +18,10 @@ module.exports = {
       pwa: false,
       enableCloudfront: false,
       uploadConcurrency: 5,
-      pluginVersion: '3.0.0'
+      pluginVersion: '4.0.0-rc3',
+      overrideEndpoint: false,
+      staticIndexPage: 'index.html',
+      staticErrorPage: 'index.html'
     }
   }
 }
